@@ -37,6 +37,7 @@ const Header = () => {
             <h1 className="text-[#706F6F]">{date.year}</h1>
           </div>
         </div>
+        <Latest/>
       </div>
     );
 };
