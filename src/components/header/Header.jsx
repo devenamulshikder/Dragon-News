@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import logo from "../../assets/logo.png"
+import Latest from './Latest';
 
 const Header = () => {
    const [date, setDate] = useState({
