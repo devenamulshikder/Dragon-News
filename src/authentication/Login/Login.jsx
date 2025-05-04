@@ -1,8 +1,25 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { use } from "react";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
 const Login = () => {
+
+  const {loginUser} = use(AuthContext)
+const navigate = useNavigate()
   const handleLogin = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    loginUser(email,password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      toast.success("User Login Successfully!")
+      navigate('/')
+    }).catch((err) => {
+      toast.error(err.message)
+    });
+
   };
   return (
     <div className="bg-base-300 p-18 max-w-3xl mx-auto">

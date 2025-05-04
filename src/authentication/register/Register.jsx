@@ -1,9 +1,31 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+import React, { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../../provider/AuthProvider";
+import toast from "react-hot-toast";
 const Register = () => {
-    const handleRegister = e=>{
-        e.preventDefault()
-    }
+
+  const {createUser, setUser} = use(AuthContext)
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photo_url = form.photo_url.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user)
+        toast.success("User Created Successfully!")
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorCode, errorMessage);
+      });
+  };
   return (
     <div className="bg-base-300 p-18 max-w-3xl mx-auto">
       <h1 className="text-secondary font-bold text-2xl text-center">
@@ -55,7 +77,10 @@ const Register = () => {
             name="password"
           />
         </div>
-        <button className="w-full bg-secondary text-white my-5 btn">
+        <button
+          type="submit"
+          className="w-full bg-secondary text-white my-5 btn"
+        >
           Register Now
         </button>
       </form>
