@@ -1,4 +1,5 @@
-const MainAllNews = ({news}) => {
+import { Link } from "react-router";
+const MainAllNews = ({ news }) => {
   const isoDate = news?.author?.published_date;
   const date = new Date(isoDate);
   const options = {
@@ -11,7 +12,6 @@ const MainAllNews = ({news}) => {
     timeZoneName: "short",
   };
   const formatted = date.toLocaleString(undefined, options);
-
   return (
     <div>
       <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md">
@@ -39,7 +39,12 @@ const MainAllNews = ({news}) => {
             className="object-cover w-full mb-4 h-60 sm:h-96 "
           />
           <h2 className="mb-1 text-xl font-semibold">{news?.title}</h2>
-          <p className="text-sm ">{news?.details}</p>
+          <div className="">
+            <p className="text-sm ">{news?.details.slice(0, 200) + `....`}</p>
+            <Link to={`/news/${news?.id}`}>
+              <button className="text-primary mt-2 btn">Read More</button>
+            </Link>
+          </div>
         </div>
         <div className="flex flex-wrap justify-between">
           <div className="space-x-2">
@@ -101,5 +106,4 @@ const MainAllNews = ({news}) => {
     </div>
   );
 };
-
 export default MainAllNews;

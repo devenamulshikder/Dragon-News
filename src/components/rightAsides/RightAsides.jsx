@@ -1,3 +1,8 @@
+import { CiFacebook, CiInstagram, CiTwitter } from "react-icons/ci";
+import swimming from '../../assets/swimming.png'
+import classes from '../../assets/class.png'
+import play from '../../assets/playground.png'
+import bg from '../../assets/bg.png'
 const RightAsides = () => {
   return (
     <div>
@@ -49,8 +54,39 @@ const RightAsides = () => {
         </svg>
         Login with GitHub
       </button>
+      <div>
+        {/* Find us on */}
+        <h1 className="text-secondary font-semibold text-lg my-4">
+          Find Us On
+        </h1>
+        <div className="join join-vertical w-full ">
+          <button className="btn join-item p-8">
+            <CiFacebook size={25} /> Facebook
+          </button>
+          <button className="btn join-item p-8">
+            <CiTwitter size={25} />
+            Twitter
+          </button>
+          <button className="btn join-item p-8">
+            <CiInstagram size={25} />
+            Instagram
+          </button>
+        </div>
+      </div>
+      {/* Q-zone */}
+      <div className="bg-base-300 p-4 mt-5">
+        <h1 className="text-secondary font-semibold text-lg">Q - Zone</h1>
+
+        <div className="flex flex-col items-center justify-center gap-4 mt-5">
+          <img src={swimming} alt="" />
+          <img src={classes} alt="" />
+          <img src={play} alt="" />
+        </div>
+      </div>
+      <div className="mt-4">
+        <img src={bg} width={315} alt="" />
+      </div>
     </div>
   );
 };
-
 export default RightAsides;
